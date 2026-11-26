@@ -1971,7 +1971,8 @@
     "843952070": "{\"keywords_append\":[\"关闭\"],\"popup_rules\":[]}"
   },
   {
-    "847156324": "{\"keywords_append\":[\"item_view\",\"card_view\",\"跳过\",\"Skip\",\"广告\",\"=main_splash_ad\"],\"popup_rules\":[{\"id\":\"=main_splash_ad\",\"action\":\"=跳过\",\"times\":1},{\"id\":\"\",\"action\":\"=close_view&=coolapk_card_view\"},{\"id\":\"=立即更新\",\"action\":\"GLOBAL_ACTION_BACK\"},{\"id\":\"\",\"action\":\"=去开启&=以后再说\"},{\"id\":\"=大家还下载了\",\"action\":\"=close_view\"},{\"id\":\"\",\"action\":\"=关闭&=item_view&=to_native_ad_view\"},{\"id\":\"\",\"action\":\"=大家还下载了&=close_view\"}],\"unite_popup_rules\":true}"
+    "847156324": "{\"keywords_append\":[\"item_view\",\"card_view\",\"跳过\",\"Skip\",\"广告\"],\"popup_rules\":[{\"id\":\"\",\"action\":\"=close_view&=coolapk_card_view\"},{\"id\":\"=立即更新\",\"action\":\"GLOBAL_ACTION_BACK\"},{\"id\":\"\",\"action\":\"=去开启&=以后再说\"},{\"id\":\"=大家还下载了\",\"action\":\"=close_view\"},{\"id\":\"\",\"action\":\"=关闭&=item_view&=to_native_ad_view\"},{\"id\":\"\",\"action\":\"=大家还下载了&=close_view\"}]}"
+
 
   },
   {
