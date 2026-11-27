@@ -1,9 +1,9 @@
 {
   key: 10401,
-  name: '清途开屏·广覆盖 ',
-  desc: '只跳开屏，每次切入最多执行一次',
+  name: '清途开屏·广覆盖 v9',
+  desc: '短时启动窗口，高置信通用识别，酷安双页面快照补丁；每次切入最多执行一次',
   enable: true,
-  actionCd: 500,
+  actionCd: 250,
   fastQuery: true,
   matchTime: 4000,
   actionMaximum: 1,
@@ -11,14 +11,16 @@
   priorityTime: 4000,
   order: -10,
   forcedTime: 4000,
+
   rules: [
     {
       key: 0,
-      name: '开屏-文字按钮',
-      actionCd: 500,
+      name: '开屏-广告文字按钮',
+      actionCd: 250,
       actionMaximum: 1,
       actionCdKey: 0,
       actionMaximumKey: 0,
+
       excludeMatches: [
         '[text="微信"||text="QQ"||text="支付宝"][visibleToUser=true]',
         '[text*="跳过吗"||text*="跳过片"||text*="跳过空白"][visibleToUser=true]',
@@ -28,38 +30,45 @@
         '[text*="搜索"||text="历史记录"||text$="在搜"][text.length>3&&text.length<7][visibleToUser=true]',
         '[text$="设置"||text^="选择"][text.length<10][visibleToUser=true]',
       ],
+
       anyMatches: [
+        // 明确的广告关闭文案
         '[text*="关闭广告"][text.length<9][width<600&&height<300][visibleToUser=true]',
         '[text="Close"][width<600&&height<300][visibleToUser=true]',
-        '[text^="跳过 "][text.length<9][text!*="视频"][width<600&&height<300][visibleToUser=true]',
+
+        // 常见开屏倒计时文案；排除正常业务语义
+        '[text^="跳过 "][text.length<9][text!*="视频"][text!*="登录"][text!*="注册"][text!*="绑定"][text!*="引导"][text!*="教程"][text!*="步骤"][width<600&&height<300][visibleToUser=true]',
         '[text^="跳過 "][text.length<9][width<600&&height<300][visibleToUser=true]',
-        '[text^="Skip "][text.length<9][width<600&&height<300][visibleToUser=true]',
-        '[text^="skip "][text.length<9][width<600&&height<300][visibleToUser=true]',
-        '[text$=" 跳过"][text.length<9][text!*="视频"][width<600&&height<300][visibleToUser=true]',
+        '[text^="Skip "][text.length<9][text!*="pping"][width<600&&height<300][visibleToUser=true]',
+        '[text^="skip "][text.length<9][text!*="pping"][width<600&&height<300][visibleToUser=true]',
+        '[text$=" 跳过"][text.length<9][text!*="视频"][text!*="登录"][text!*="引导"][text!*="教程"][width<600&&height<300][visibleToUser=true]',
         '[text$=" 跳過"][text.length<9][width<600&&height<300][visibleToUser=true]',
-        '[text="跳过"][width<600&&height<300][right<250&&top<700][visibleToUser=true]',
-        '[text="跳過"][width<600&&height<300][right<250&&top<700][visibleToUser=true]',
-        '[text="Skip"][width<600&&height<300][right<250&&top<700][visibleToUser=true]',
-        '[text="skip"][width<600&&height<300][right<250&&top<700][visibleToUser=true]',
-        '@[clickable=true][width<600&&height<400][right<300&&top<750][visibleToUser=true] > [text="跳过"][visibleToUser=true]',
-        '@[clickable=true][width<600&&height<400][right<300&&top<750][visibleToUser=true] > [text="跳過"][visibleToUser=true]',
-        '@[clickable=true][width<600&&height<400][right<300&&top<750][visibleToUser=true] > [text="Skip"][visibleToUser=true]',
-        '@[clickable=true][width<600&&height<400][right<300&&top<750][visibleToUser=true] > [text="skip"][visibleToUser=true]',
+
+        // 纯“跳过”必须位于明确的广告/开屏容器中
         '[vid*="ad"] >n [text="跳过"][width<600&&height<300][visibleToUser=true]',
         '[vid*="splash"] >n [text="跳过"][width<600&&height<300][visibleToUser=true]',
-        '[id*="ad"] >n [text="跳过"][width<600&&height<300][visibleToUser=true]',
-        '[id*="splash"] >n [text="跳过"][width<600&&height<300][visibleToUser=true]',
+        '[vid*="ad"] >n [text="跳過"][width<600&&height<300][visibleToUser=true]',
+        '[vid*="splash"] >n [text="跳過"][width<600&&height<300][visibleToUser=true]',
+        '[vid*="ad"] >n [text="Skip"][width<600&&height<300][visibleToUser=true]',
+        '[vid*="splash"] >n [text="Skip"][width<600&&height<300][visibleToUser=true]',
+
+        // 文本子节点不可点击时，点击其可点击父节点
         '[vid*="ad"] >n @[clickable=true][width<600&&height<400][visibleToUser=true] > [text="跳过"][visibleToUser=true]',
         '[vid*="splash"] >n @[clickable=true][width<600&&height<400][visibleToUser=true] > [text="跳过"][visibleToUser=true]',
+        '[vid*="ad"] >n @[clickable=true][width<600&&height<400][visibleToUser=true] > [text="Skip"][visibleToUser=true]',
+        '[vid*="splash"] >n @[clickable=true][width<600&&height<400][visibleToUser=true] > [text="Skip"][visibleToUser=true]',
       ],
     },
+
     {
       key: 1,
       name: '开屏-无文字图标按钮',
+      actionCd: 250,
       matchTime: 4000,
       actionMaximum: 1,
       actionCdKey: 0,
       actionMaximumKey: 0,
+
       excludeMatches: [
         '[text="微信"||text="QQ"||text="支付宝"][visibleToUser=true]',
         '[text*="跳过吗"||text*="跳过片"||text*="跳过空白"][visibleToUser=true]',
@@ -67,54 +76,101 @@
         '[text*="是否跳过"||text*="确认跳过"||text*="暂时跳过"][visibleToUser=true]',
         '[text="首页"||text="购物车"||text="同城"||text="我的"][visibleToUser=true]',
       ],
+
       anyMatches: [
+        // 明确 skip 资源 ID
         '[vid*="skip"][vid!*="video"][childCount=0][width<500&&height<300][visibleToUser=true][!(text="帮助")&&!(text="取消")&&!(text*="退出")&&!(text*="广告设置")]',
-        '[id$="skip"][childCount=0][width<500&&height<300][visibleToUser=true][!(text="帮助")&&!(text="取消")&&!(text*="退出")&&!(text*="广告设置")]',
-        '[id$="splash_skip_btn"][width<500&&height<300][visibleToUser=true]',
-        '[desc="跳过"][width<500&&height<300][right<250&&top<700][visibleToUser=true]',
-        '[desc="跳過"][width<500&&height<300][right<250&&top<700][visibleToUser=true]',
+        '[vid$="splash_skip_btn"][width<500&&height<300][visibleToUser=true]',
+
+        // 明确广告关闭无障碍描述
         '[desc*="关闭广告"][desc.length<9][width<500&&height<300][visibleToUser=true]',
-        '[desc="Skip"][width<500&&height<300][right<250&&top<700][visibleToUser=true]',
-        '[desc="skip"][width<500&&height<300][right<250&&top<700][visibleToUser=true]',
+
+        // 已验证的互动广告和内嵌广告结构
         '@[name$="View"][clickable=true][childCount<2][width<300&&height<200] - [text="互动广告"][visibleToUser=true]',
         'TextView - @View[clickable=true][width<200] <(2,3) FrameLayout <2 FrameLayout < FrameLayout < [vid="ad_container"]',
       ],
     },
+
     {
       key: 2,
-      name: '开屏-摇一摇/扭一扭/上滑',
+      name: '开屏-互动广告关闭',
+      actionCd: 250,
       matchTime: 4000,
       actionMaximum: 1,
       actionCdKey: 0,
       actionMaximumKey: 0,
       action: 'clickCenter',
+
       anyMatches: [
         '@View[text=null][clickable=true][childCount=0][visibleToUser=true][width<200&&height<200] +(1,2) TextView[index=parent.childCount.minus(1)][childCount=0] <n FrameLayout[childCount>2][text=null][desc=null] >(n+6) [text*="摇"||text*="扭"||text*="第三方应用"||text*="上滑"||text*="省钱好物"||text*="Shake"][visibleToUser=true]',
       ],
     },
+
     {
       key: 3,
-      name: '开屏-酷安补充',
-      actionCd: 500,
-      matchTime: 4000,
+      name: '开屏-酷安 MainActivity',
+      action: 'click',
+      actionCd: 250,
       actionMaximum: 1,
-      actionCdKey: 0,
-      actionMaximumKey: 0,
-      anyMatches: [
+      actionCdKey: 3,
+      actionMaximumKey: 3,
+      matchTime: 10000,
+      resetMatch: 'app',
+      fastQuery: true,
+
+      matches: [
         '[vid="main_splash_ad"] >n @View[clickable=true][visibleToUser=true][childCount=0]',
-        '[vid="ad_container"] >n @View[clickable=true][visibleToUser=true][childCount=0][left>900]',
       ],
+
+      excludeMatches: [],
+
+      snapshotUrls: [
+        'https://i.gkd.li/i/1794338850472',
+      ],
+
       apps: [
         {
           id: 'com.coolapk.market',
           activityIds: [
             'com.coolapk.market.view.main.MainActivity',
+          ],
+        },
+      ],
+    },
+
+    {
+      key: 4,
+      name: '开屏-酷安 SplashAdActivity',
+      action: 'click',
+      actionCd: 250,
+      actionMaximum: 1,
+      actionCdKey: 3,
+      actionMaximumKey: 3,
+      matchTime: 10000,
+      resetMatch: 'app',
+      fastQuery: true,
+
+      matches: [
+        '[vid="ad_container"] >n @View[clickable=true][visibleToUser=true][childCount=0][left>900]',
+      ],
+
+      excludeMatches: [],
+
+      snapshotUrls: [
+        'https://i.gkd.li/i/1794331187263',
+      ],
+
+      apps: [
+        {
+          id: 'com.coolapk.market',
+          activityIds: [
             'com.coolapk.market.view.splash.SplashAdActivity',
           ],
         },
       ],
     },
   ],
+
   apps: [
     {
       id: 'com.tencent.mm',
